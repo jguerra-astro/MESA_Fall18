@@ -48,7 +48,7 @@ done
 
 initialAlpha=1.6
 aplhaStep='.4'
-change_param xa_central_lower_limit(1) 1d-3 inlist_project
+change_param xa_central_lower_limit\(1\) 1d-3 inlist_project
 
 #Running this for
 for k in {1..5}
@@ -58,7 +58,7 @@ do
 	do 
 			change_param mixing_length_alpha $(echo "$initialAlpha + $aplhaStep * $i") inlist_project
 			./rn 
-			mv LOGS LOGS_M_$k_alpha_$j
+			mv LOGS LOGS_M_$k\_alpha_$j
 	done
 done 
 }
