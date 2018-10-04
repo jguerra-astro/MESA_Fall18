@@ -34,7 +34,8 @@ for i in {0..20}
 do
 	change_param initial_mass "$(echo "$M_0 + $step * $i " | bc)" inlist_project
 	./rn
-	mv LOGS LOGS_"$(echo "$start + $M_0 * $i " | bc)"
+	mv LOGS LOGS_M_"$(echo "$M_0 + $step * $i " | bc)"
+	# chage_param log_directory 'LOGS_"$(echo "$start + $M_0 * $i " | bc)"' inlist_project
 done
 
 # Then I'll plot L vs M to see if  L ∝ M^3 
@@ -45,25 +46,22 @@ done
 # for this exercise a mass interval of 1Msun is sufficient. Plot the tracks for the three different mixing lengths. What is 
 # the most notable difference in terms of radius and temperature. You should keep the abundances the same.
 
-
-# NOTE:  Not sure what she means by "for the exercise a  mass interval of 1Msun is sufficient" 
-
 initialAlpha=1.6
 aplhaStep='.4'
+change_param xa_central_lower_limit(1) 1d-3 inlist_project
 
-change_param initial_mass 1 inlist_project #Reset the mass to 1 solar mass 
-
-for j in {0,1,2}
-do 
-	change_param mixing_length_alpha $(echo "$initialAlpha + $aplhaStep * $i") inlist_project
-	./rn 
-	mv LOGS LOGS_"$(echo "$start + $M_0 * $i " | bc)"
-done
+#Running this for
+for k in {1..5}
+do	
+	change_param initial_mass $k inlist_project
+	for j in {0..2}
+	do 
+			change_param mixing_length_alpha $(echo "$initialAlpha + $aplhaStep * $i") inlist_project
+			./rn 
+			mv LOGS LOGS_M_$k_alpha_$j
+	done
+done 
 }
-
-#QUESTIONS:
-
-#could I have set 
 
 
 
