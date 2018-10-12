@@ -22,9 +22,9 @@ change_param() {
 	replace="      $param = $newval" 
 	sed -r -i.bak -e "s/$search/$replace/g" $filename 
 	
-	if [ ! "$filename" == 'inlist_0all' ]; then 
-		change_param $1 $2 "inlist_0all" 
-	fi 
+#	if [ ! "$filename" == 'inlist_0all' ]; then 
+#		change_param $1 $2 "inlist_0all" 
+#	fi 
 } 
 
 set_inlist() { 
