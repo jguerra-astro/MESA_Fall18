@@ -29,7 +29,9 @@
 M_0=1.0
 step='.2'   # addding decimals in bash scripts is apparently annoying to do -- but i found the following way of doing it online.
 
-
+change_param xa_central_lower_limit\\\(1\\\) 45d-2 inlist_project	
+chamge_param pgstar.flag \.false\. inlist_project
+change_param mixing_length_alpha 2\.0 inlist_project
 for i in {0..20}
 do
 	change_param initial_mass "$(echo "$M_0 + $step * $i " | bc)" inlist_project
@@ -48,7 +50,7 @@ done
 
 initialAlpha=1.6
 aplhaStep='.4'
-change_param xa_central_lower_limit\(1\) 1d-3 inlist_project
+change_param xa_central_lower_limit\\\(1\\\) 1d-3 inlist_project
 
 #Running this for
 for k in {1..5}
